@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   validate_map_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 12:43:19 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/09 15:40:06 by mpatrao          ###   ########.fr       */
+/*   Created: 2023/05/09 15:29:29 by mpatrao           #+#    #+#             */
+/*   Updated: 2023/05/09 15:33:02 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-# include "libft/libft.h"
-//lib for 'open' function
-# include <fcntl.h>
-
-typedef struct measures
+int	get_height(char **map)
 {
-	int	x;
-	int	y;
-}	t_measures;
+	int	i;
 
-typedef struct data
-{
-	char		**map;
-	t_measures	size;
-	t_measures	position;
-}	t_data;
-
-int		validate_file(char *av);
-int		get_height(char **map);
-void	error_message(void);
-
-#endif
+	i = 0;
+	while (map[i] != NULL)
+		i++;
+	return (i);
+}
