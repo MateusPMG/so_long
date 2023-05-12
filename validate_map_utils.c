@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:29:29 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/12 15:29:42 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/12 15:51:53 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	error_free(t_data **data)
 	int	i;
 
 	i = 0;
-	while ((*data)->map[i] != '\0')
+	while ((*data)->map[i] != NULL)
 	{
 		free((*data)->map[i]);
 		i++;
@@ -37,9 +37,32 @@ void	error_free(t_data **data)
 	exit(1);
 }
 
+void	check_path(char **map, t_vars size)
+{
+	if ((map[size.y_start][size.x_start] != '0'
+		&& map[size.y_start][size.x_start] != 'C'
+		&& map[size.y_start][size.x_start] != 'P'
+		&& map[size.y_start][size.x_start] != 'E')
+		|| size.x_start < 0 || size.y_start < 0 ||
+		size.x_start >= size.x || size.y_start >= size.y)
+		return ;
+	if (map[size.y_start][size.x_start] != 'E')
+		map[size.y_start][size.x_start] = 'e';
+	if (map[size.y_start][size.x_start] != 'P')
+		map[size.y_start][size.x_start] = 'p';
+	if (map[size.y_start][size.x_start] != 'C')
+		map[size.y_start][size.x_start] = 'c';
+	if (map[size.y_start][size.x_start] != '0')
+		map[size.y_start][size.x_start] = 'o';
+	check_path(map, (t_vars){size.x_start + 1, size.y_start, size.x, size.y});
+	check_path(map, (t_vars){size.x_start - 1, size.y_start, size.x, size.y});
+	check_path(map, (t_vars){size.x_start, size.y_start + 1, size.x, size.y});
+	check_path(map, (t_vars){size.x_start, size.y_start - 1, size.x, size.y});
+}
+
 void	check_path_values(t_data **data)
 {
-	t_measures	size;
+	t_vars		size;
 	int			x;
 	int			y;
 
@@ -63,27 +86,4 @@ void	check_path_values(t_data **data)
 		}
 	}
 	check_path((*data)->map, size);
-}
-
-void	check_path(char **map, t_measures size)
-{
-	if ((map[size.y_start][size.x_start] != '0'
-		&& map[size.y_start][size.x_start] != 'C'
-		&& map[size.y_start][size.x_start] != 'P'
-		&& map[size.y_start][size.x_start] != 'E')
-		|| size.x_start < 0 || size.y_start < 0 ||
-		size.x_start >= size.x || size.y_start >= size.y)
-		return ;
-	if (map[size.y_start][size.x_start] != 'E')
-		map[size.y_start][size.x_start] = 'e';
-	if (map[size.y_start][size.x_start] != 'P')
-		map[size.y_start][size.x_start] = 'p';
-	if (map[size.y_start][size.x_start] != 'C')
-		map[size.y_start][size.x_start] = 'c';
-	if (map[size.y_start][size.x_start] != '0')
-		map[size.y_start][size.x_start] = 'o';
-	check_path(map, (t_measures){size.x_start + 1, size.y_start});
-	check_path(map, (t_measures){size.x_start - 1, size.y_start});
-	check_path(map, (t_measures){size.x_start, size.y_start + 1});
-	check_path(map, (t_measures){size.x_start, size.y_start - 1});
 }

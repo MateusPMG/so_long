@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:04:49 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/12 14:46:27 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/12 15:55:29 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ void	check_walls(t_data **data)
 	int	x;
 
 	y = 0;
-	while ((*data)->map[y] != '\0')
+	while ((*data)->map[y] != NULL)
 	{
-		if ((*data)->map[y] != 1)
+		if ((*data)->map[y][0] != 1)
 			error_free(data);
 		y++;
 	}
+	x = 0;
 	while ((*data)->map[0][x] != '\0' && (*data)->map[y][x] != '\0')
 	{
 		if ((*data)->map[0][x] != 1 || (*data)->map[y - 1][x] != 1)
