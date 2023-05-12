@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:43:19 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/12 14:28:24 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/12 15:33:04 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ int		validate_file(char *av);
 int		get_height(char **map);
 void	error_message(void);
 void	error_free(t_data **data);
+void	check_path_values(t_data **data);
 
 #endif
