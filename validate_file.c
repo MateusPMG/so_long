@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:55:29 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/12 15:45:08 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/16 15:06:03 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ int	validate_file(char *av)
 {
 	int	len;
 
-	if (access(&av[1], 0) != 0)
+	if (access(av, 0) != 0)
 	{
 		perror("Error");
 		return (0);
 	}
-	len = ft_strlen(&av[1]);
-	if (ft_strncmp(&av[len - 4], ".ber", 4))
+	len = ft_strlen(av);
+	if (ft_strncmp(&av[len - 4], ".ber", 4) != 0)
 	{
 		write(1, "incorrect map file type", 23);
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:29:29 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/12 15:51:53 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/16 16:42:35 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	error_free(t_data **data)
 		free((*data)->map[i]);
 		i++;
 	}
-	free(data);
+	free((*data)->map);
 	write(1, "error", 5);
 	exit(1);
 }
@@ -86,4 +86,26 @@ void	check_path_values(t_data **data)
 		}
 	}
 	check_path((*data)->map, size);
+}
+
+void	check_c_e(t_data **d)
+{
+	int	c;
+	int	x;
+	int	y;
+
+	c = 0;
+	x = 0;
+	y = 0;
+	while ((*d)->map[(*d)->size.y_start] != NULL)
+	{
+		while ((*d)->map[(*d)->size.y_start][(*d)->size.x_start] != '\0')
+		{
+			if ((*d)->map[(*d)->size.y_start][(*d)->size.x_start] == 'c')
+			{
+				c++;
+				(*d)->map[(*d)->size.y_start][(*d)->size.x_start] == 'C';
+			}
+		}
+	}
 }
