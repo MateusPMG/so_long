@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:29:29 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/16 16:42:35 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/17 14:17:34 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	error_free(t_data **data)
 		i++;
 	}
 	free((*data)->map);
-	write(1, "error", 5);
+	write(1, "Error\nWrong Format\n", 19);
 	exit(1);
 }
 
@@ -46,13 +46,13 @@ void	check_path(char **map, t_vars size)
 		|| size.x_start < 0 || size.y_start < 0 ||
 		size.x_start >= size.x || size.y_start >= size.y)
 		return ;
-	if (map[size.y_start][size.x_start] != 'E')
+	if (map[size.y_start][size.x_start] == 'E')
 		map[size.y_start][size.x_start] = 'e';
-	if (map[size.y_start][size.x_start] != 'P')
+	if (map[size.y_start][size.x_start] == 'P')
 		map[size.y_start][size.x_start] = 'p';
-	if (map[size.y_start][size.x_start] != 'C')
+	if (map[size.y_start][size.x_start] == 'C')
 		map[size.y_start][size.x_start] = 'c';
-	if (map[size.y_start][size.x_start] != '0')
+	if (map[size.y_start][size.x_start] == '0')
 		map[size.y_start][size.x_start] = 'o';
 	check_path(map, (t_vars){size.x_start + 1, size.y_start, size.x, size.y});
 	check_path(map, (t_vars){size.x_start - 1, size.y_start, size.x, size.y});
@@ -88,24 +88,31 @@ void	check_path_values(t_data **data)
 	check_path((*data)->map, size);
 }
 
-void	check_c_e(t_data **d)
+void	check_c(t_data **d)
 {
 	int	c;
 	int	x;
 	int	y;
 
 	c = 0;
-	x = 0;
 	y = 0;
-	while ((*d)->map[(*d)->size.y_start] != NULL)
+	while ((*d)->map[y] != NULL)
 	{
-		while ((*d)->map[(*d)->size.y_start][(*d)->size.x_start] != '\0')
+		x = 0;
+		while ((*d)->map[y][x] != '\0')
 		{
-			if ((*d)->map[(*d)->size.y_start][(*d)->size.x_start] == 'c')
+			if ((*d)->map[y][x] == 'c')
 			{
 				c++;
-				(*d)->map[(*d)->size.y_start][(*d)->size.x_start] == 'C';
+				(*d)->map[y][x] = 'C';
 			}
+			x++;
 		}
+		y++;
+	}
+	if (c == 0)
+	{
+		write(1, "No path to collectible", 22);
+		exit(1);
 	}
 }

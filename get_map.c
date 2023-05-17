@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:44:35 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/16 15:07:56 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/17 15:25:21 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,26 @@ char	**get_map(char *av)
 	char	*line;
 	char	*all_lines;
 	int		mapfd;
+	char	**res;
 
 	line = "";
-	all_lines = ft_strdup("");
+	all_lines = "";
 	mapfd = open(av, O_RDONLY);
-	if (mapfd == -1)
-		error_message();
 	while (1)
 	{
 		line = get_next_line(mapfd);
-		if (line == NULL || line[0] == '\n')
+		if (line == NULL)
 			break ;
 		all_lines = ft_strjoin(all_lines, line);
 		free(line);
 	}
-	free(line);
 	close(mapfd);
 	if (all_lines[0] == '\0')
+	{
 		error_message();
-	return (ft_split(all_lines, '\n'));
+	}
+	free(line);
+	res = ft_split(all_lines, '\n');
+	free(all_lines);
+	return (res);
 }

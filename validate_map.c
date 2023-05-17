@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:04:49 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/16 16:38:52 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/17 14:41:04 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,16 @@
 
 void	check_rectangular(t_data **data)
 {
-	int	map_x;
-	int	map_y;
-	int	height;
-	int	flag;
+	size_t	flag;
+	int		i;
 
-	map_y = 0;
-	flag = 0;
-	height = get_height((*data)->map);
-	while (map_y != height)
+	i = 0;
+	flag = ft_strlen((*data)->map[0]);
+	while ((*data)->map[i])
 	{
-		map_x = 0;
-		while ((*data)->map[map_y][map_x] != '\0')
-			map_x++;
-		map_y++;
-		if (flag != 0)
-		{
-			if (flag != map_x)
-				error_free(data);
-		}
-		else
-			flag = map_x;
+		if (ft_strlen((*data)->map[i]) != flag)
+			error_free(data);
+		i++;
 	}
 }
 
@@ -96,20 +85,9 @@ void	check_elements(t_data **data)
 
 void	check_path_elements(t_data **d)
 {
-	int		p;
-
-	p = 0;
-	if ((*d)->map[(*d)->size.y_start][(*d)->size.x_start] == 'p')
-	{
-		p++;
-		(*d)->map[(*d)->size.y_start][(*d)->size.x_start] = 'P';
-	}
 	check_c(d);
-	if (p != 1)
-	{
-		write(1, "wrong number of P", 17);
-		exit (1);
-	}
+	check_e(d);
+	check_o(d);
 }
 
 void	validate_map(t_data *data)
