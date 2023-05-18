@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:43:19 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/17 12:19:16 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/18 16:35:52 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <fcntl.h>
 //lib for 'acess' and 'write'
 # include <unistd.h>
+//lib for mlx
+# include "./mlx_linux/mlx.h"
+//lib for keyhandles
+# include <X11/keysym.h>
 
 typedef struct map
 {
@@ -41,6 +45,8 @@ typedef struct data
 	char		**map;
 	t_vars		size;
 	t_vars		position;
+	void		*mlx_ptr;
+	void		*win_ptr;
 }	t_data;
 
 int		validate_file(char *av);
@@ -53,5 +59,7 @@ void	validate_map(t_data *data);
 void	check_c(t_data **d);
 void	check_e(t_data **d);
 void	check_o(t_data **d);
+void	check_rectangular(t_data **data);
+void	free_mlx(t_data *data);
 
 #endif

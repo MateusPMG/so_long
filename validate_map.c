@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:04:49 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/17 14:41:04 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/18 13:16:56 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,26 @@
 
 void	check_rectangular(t_data **data)
 {
-	size_t	flag;
-	int		i;
+	int		size;
+	int		y;
+	int		x;
 
-	i = 0;
-	flag = ft_strlen((*data)->map[0]);
-	while ((*data)->map[i])
+	y = get_height((*data)->map) - 1;
+	size = 0;
+	while ((*data)->map[0][size] && (*data)->map[0][size] != '\n')
+		size++;
+	while (y)
 	{
-		if (ft_strlen((*data)->map[i]) != flag)
+		x = 0;
+		while ((*data)->map[y][x] && (*data)->map[y][x] != '\n')
+		{
+			x++;
+		}
+		if (x != size)
+		{
 			error_free(data);
-		i++;
+		}
+		y--;
 	}
 }
 
@@ -65,7 +75,7 @@ void	check_elements(t_data **data)
 	while (map.y--)
 	{
 		map.x = 0;
-		while ((*data)->map[map.y][map.x] != '\0')
+		while ((*data)->map[map.y][map.x] && (*data)->map[map.y][map.x] != '\n')
 		{
 			if ((*data)->map[map.y][map.x] == 'P')
 				map.p++;

@@ -1,29 +1,27 @@
 NAME = so_long
 LIBFT = libft/libft.a
 LIBFT_PATH = libft/
-SRC = get_map.c so_long.c validate_file.c validate_map_utils.c validate_map.c utils.c
-SRC_BS = pipex_bonus.c process_bonus.c commands_bonus.c 
+LIBMLX_DIR = ./mlx_linux
+MLX_INCLUDE = -Imlx_linux
+SRC = get_map.c so_long.c validate_file.c validate_map_utils.c validate_map.c utils.c free.c
 RM = @rm -f
 CC = @cc
 CFLAGS = -Wall -Wextra -Werror -g -o pipex -fsanitize=address
+MLX_FLAGS = 	-L$(LIBMLX_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 
 OBJ = $(SRC:.c=.o)
-BOBJ = $(SRC_BS:.c=.o)
 
 all:			$(NAME)
 
-bonus: 	$(BOBJ)
-		@$(MAKE) --no-print-directory -C $(LIBFT_PATH)
-		$(CC) $(CFLAGS) $(BOBJ) -o pipex $(LIBFT)
-
 $(NAME):		$(OBJ)	
+				@$(MAKE) --no-print-directory -C $(LIBMLX_DIR)
 				@$(MAKE) --no-print-directory -C $(LIBFT_PATH)
-				$(CC) $(CFLAGS) $(OBJ) -o $(@) $(LIBFT) 
-
+				$(CC) $(CFLAGS) $(OBJ) $(MLX_FLAGS) -o $(@) $(LIBFT) 
 
 clean:
 				make clean -C $(LIBFT_PATH)
-				$(RM) $(OBJ) $(BOBJ)
+				make clean -C $(LIBMLX_DIR)
+				$(RM) $(OBJ)
 
 fclean: 		clean
 				make fclean -C $(LIBFT_PATH)
@@ -31,6 +29,4 @@ fclean: 		clean
 
 re:		fclean	$(NAME) $(OBJ)
 
-reb:		fclean bonus $(BOBJ)
-
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re

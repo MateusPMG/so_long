@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 15:10:22 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/17 15:54:55 by mpatrao          ###   ########.fr       */
+/*   Created: 2023/05/18 14:45:59 by mpatrao           #+#    #+#             */
+/*   Updated: 2023/05/18 15:12:15 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	free_mlx(t_data *data)
 {
-	char	*p;
-
-	if (!s1 || !s2)
-		return (NULL);
-	p = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!p)
-		return (NULL);
-	ft_strlcpy(p, s1, ft_strlen(s1) + 1);
-	ft_strlcat(p, s2, ft_strlen(s1) + ft_strlen(s2) + 1);
-	return (p);
+	mlx_destroy_display(data->mlx_ptr);
+	free(data->mlx_ptr);
 }
