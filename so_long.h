@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:43:19 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/18 16:35:52 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/23 14:50:23 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@
 # include "./mlx_linux/mlx.h"
 //lib for keyhandles
 # include <X11/keysym.h>
+
+typedef struct sprite
+{
+	void		*wall;
+	void		*collectible;
+	void		*player;
+	void		*path;
+	void		*exit;
+}				t_sprite;
 
 typedef struct map
 {
@@ -47,6 +56,7 @@ typedef struct data
 	t_vars		position;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	t_sprite	*sprite;
 }	t_data;
 
 int		validate_file(char *av);
@@ -61,5 +71,7 @@ void	check_e(t_data **d);
 void	check_o(t_data **d);
 void	check_rectangular(t_data **data);
 void	free_mlx(t_data *data);
+void	get_image(t_data *data);
+int		key_handler(t_data *data, int keycode);
 
 #endif

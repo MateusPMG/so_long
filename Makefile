@@ -3,7 +3,7 @@ LIBFT = libft/libft.a
 LIBFT_PATH = libft/
 LIBMLX_DIR = ./mlx_linux
 MLX_INCLUDE = -Imlx_linux
-SRC = get_map.c so_long.c validate_file.c validate_map_utils.c validate_map.c utils.c free.c
+SRC = get_map.c so_long.c validate_file.c validate_map_utils.c validate_map.c utils.c free.c key_handler.c sprites.c
 RM = @rm -f
 CC = @cc
 CFLAGS = -Wall -Wextra -Werror -g -o pipex -fsanitize=address

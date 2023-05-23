@@ -6,16 +6,11 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:43:04 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/18 16:58:38 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/23 14:30:05 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	nothing(void)
-{
-	return (0);
-}
 
 int	close_window(t_data **data)
 {
@@ -46,8 +41,9 @@ void	mlx(t_data *data)
 		free(data->win_ptr);
 		exit(1);
 	}
-	mlx_loop_hook(data->mlx_ptr, nothing, &data);
-	mlx_hook(data->win_ptr, 17, 1L << 0, close_window, &data);
+	get_image(data);
+	mlx_hook(data->win_ptr, 17, 1L << 0, close_handler, &data);
+	mlx_hook(data->win_ptr, 2, 1L << 0, key_handler, &data);
 	mlx_loop(data->mlx_ptr);
 }
 
