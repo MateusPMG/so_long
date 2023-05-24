@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 12:25:30 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/04/28 15:23:37 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/24 14:39:05 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -42,5 +43,6 @@ int		ft_checklen(char *s);
 char	*ft_allocate_join(char *fl, char *bf);
 int		ft_reset_buffer(char *buffer);
 char	*ft_freeline(char *fl);
+int		ft_printf(const char *format, ...);
 
 #endif

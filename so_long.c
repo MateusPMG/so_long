@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:43:04 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/23 14:30:05 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/24 15:00:18 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	mlx(t_data *data)
 		exit(1);
 	}
 	get_image(data);
-	mlx_hook(data->win_ptr, 17, 1L << 0, close_handler, &data);
+	add_image(data);
+	mlx_hook(data->win_ptr, 17, 1L << 0, close_window, &data);
 	mlx_hook(data->win_ptr, 2, 1L << 0, key_handler, &data);
 	mlx_loop(data->mlx_ptr);
 }

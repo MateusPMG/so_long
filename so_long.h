@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:43:19 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/23 14:50:23 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/24 15:05:09 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,11 @@ typedef struct data
 {
 	char		**map;
 	t_vars		size;
-	t_vars		position;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_sprite	*sprite;
+	int			c;
+	int			moves;
 }	t_data;
 
 int		validate_file(char *av);
@@ -73,5 +74,10 @@ void	check_rectangular(t_data **data);
 void	free_mlx(t_data *data);
 void	get_image(t_data *data);
 int		key_handler(t_data *data, int keycode);
+void	add_image(t_data *data);
+void	check_p(t_data **d);
+void	c_count(t_data *d);
+int		end_game(t_data *data, int y, int x);
+void	image_selection(t_data *data, int height, int width);
 
 #endif

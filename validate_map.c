@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:04:49 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/18 13:16:56 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/24 13:39:31 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	check_path_elements(t_data **d)
 	check_c(d);
 	check_e(d);
 	check_o(d);
+	check_p(d);
 }
 
 void	validate_map(t_data *data)
