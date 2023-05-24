@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:43:04 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/24 15:00:18 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/24 16:14:37 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ int	close_window(t_data **data)
 
 void	init_size(t_data *data)
 {
+	t_sprite	*sprite;
+
+	sprite = (t_sprite *)malloc(sizeof(t_sprite));
+	data->sprite = sprite;
 	data->size.x = 0;
 	data->size.y = 0;
 	while (data->map[data->size.y])
@@ -41,18 +45,20 @@ void	mlx(t_data *data)
 		free(data->win_ptr);
 		exit(1);
 	}
+	c_count(data);
 	get_image(data);
 	add_image(data);
-	mlx_hook(data->win_ptr, 17, 1L << 0, close_window, &data);
-	mlx_hook(data->win_ptr, 2, 1L << 0, key_handler, &data);
+	mlx_hook(data->win_ptr, 17, 1L << 17, close_window, &data);
+	mlx_hook(data->win_ptr, 2, 1L << 0, key_handler, data);
 	mlx_loop(data->mlx_ptr);
 }
 
 int	main(int ac, char **av)
 {
-	t_data	data;
+	t_data	*data;
 	int		i;
 
+	data = (t_data *)malloc(sizeof(t_data));
 	if (ac != 2)
 	{
 		perror("Error");
@@ -60,19 +66,19 @@ int	main(int ac, char **av)
 	}
 	if (!validate_file(av[1]))
 		return (0);
-	data.map = get_map(av[1]);
-	if (data.map != NULL)
+	data->map = get_map(av[1]);
+	if (data->map != NULL)
 	{
-		validate_map(&data);
-		mlx(&data);
+		validate_map(data);
+		mlx(data);
 	}
-	free_mlx(&data);
+	free_mlx(data);
 	i = 0;
-	while (data.map[i])
+	while (data->map[i])
 	{
-		free(data.map[i]);
+		free(data->map[i]);
 		i++;
 	}
-	free(data.map);
+	free(data->map);
 	return (0);
 }

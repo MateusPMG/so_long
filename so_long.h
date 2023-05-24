@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:43:19 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/24 15:05:09 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/24 16:11:15 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@
 # include "./mlx_linux/mlx.h"
 //lib for keyhandles
 # include <X11/keysym.h>
+
+# define KEY_ESC 65307
+# define KEY_UP 65362
+# define KEY_DOWN 65364
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
 
 typedef struct sprite
 {
@@ -79,5 +89,6 @@ void	check_p(t_data **d);
 void	c_count(t_data *d);
 int		end_game(t_data *data, int y, int x);
 void	image_selection(t_data *data, int height, int width);
+int		close_window(t_data **data);
 
 #endif

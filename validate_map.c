@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:04:49 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/24 13:39:31 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/24 15:52:47 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,30 +66,32 @@ void	check_walls(t_data **data)
 
 void	check_elements(t_data **data)
 {
-	t_map	map;
+	t_map	*map;
 
-	map.c = 0;
-	map.p = 0;
-	map.e = 0;
-	map.y = get_height((*data)->map) - 1;
-	while (map.y--)
+	map = (t_map *)malloc(sizeof(t_map));
+	map->c = 0;
+	map->p = 0;
+	map->e = 0;
+	map->y = get_height((*data)->map) - 1;
+	while (map->y--)
 	{
-		map.x = 0;
-		while ((*data)->map[map.y][map.x] && (*data)->map[map.y][map.x] != '\n')
+		map->x = 0;
+		while ((*data)->map[map->y][map->x]
+				&& (*data)->map[map->y][map->x] != '\n')
 		{
-			if ((*data)->map[map.y][map.x] == 'P')
-				map.p++;
-			else if ((*data)->map[map.y][map.x] == 'C')
-				map.c++;
-			else if ((*data)->map[map.y][map.x] == 'E')
-				map.e++;
-			else if ((*data)->map[map.y][map.x] != '1'
-				&& (*data)->map[map.y][map.x] != '0')
+			if ((*data)->map[map->y][map->x] == 'P')
+				map->p++;
+			else if ((*data)->map[map->y][map->x] == 'C')
+				map->c++;
+			else if ((*data)->map[map->y][map->x] == 'E')
+				map->e++;
+			else if ((*data)->map[map->y][map->x] != '1'
+				&& (*data)->map[map->y][map->x] != '0')
 				error_free(data);
-			map.x++;
+			map->x++;
 		}
 	}
-	if (map.c == 0 || map.e != 1 || map.p != 1)
+	if (map->c == 0 || map->e != 1 || map->p != 1)
 		error_free(data);
 }
 

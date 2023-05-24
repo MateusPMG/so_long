@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 13:23:58 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/24 15:03:28 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/24 15:41:15 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	get_image(t_data *data)
 {
-	t_sprite	*sprite;
-	int			h;
+	int	h;
 
 	h = 50;
-	sprite = (t_sprite *)malloc(sizeof(t_sprite));
 	data->sprite->wall = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./textures/wall.xpm", &h, &h);
 	data->sprite->player = mlx_xpm_file_to_image(data->mlx_ptr,
