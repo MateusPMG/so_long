@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:55:29 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/24 14:40:13 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/25 14:30:43 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	c_count(t_data *d)
 	}
 }
 
-void	check_p(t_data **d)
+void	check_p(t_data *d)
 {
 	int	c;
 	int	x;
@@ -76,15 +76,15 @@ void	check_p(t_data **d)
 
 	c = 0;
 	y = 0;
-	while ((*d)->map[y] != NULL)
+	while ((d)->map[y] != NULL)
 	{
 		x = 0;
-		while ((*d)->map[y][x] != '\0')
+		while ((d)->map[y][x] != '\0')
 		{
-			if ((*d)->map[y][x] == 'p')
+			if ((d)->map[y][x] == 'p')
 			{
 				c++;
-				(*d)->map[y][x] = 'P';
+				(d)->map[y][x] = 'P';
 			}
 			x++;
 		}

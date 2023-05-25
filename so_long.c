@@ -6,15 +6,15 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:43:04 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/24 16:14:37 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/25 14:46:32 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	close_window(t_data **data)
+int	close_window(t_data *data)
 {
-	mlx_destroy_window((*data)->mlx_ptr, (*data)->win_ptr);
+	mlx_destroy_window((data)->mlx_ptr, (data)->win_ptr);
 	return (0);
 }
 
@@ -48,17 +48,17 @@ void	mlx(t_data *data)
 	c_count(data);
 	get_image(data);
 	add_image(data);
-	mlx_hook(data->win_ptr, 17, 1L << 17, close_window, &data);
+	mlx_hook(data->win_ptr, 17, 1L << 17, close_window, data);
 	mlx_hook(data->win_ptr, 2, 1L << 0, key_handler, data);
 	mlx_loop(data->mlx_ptr);
+	return ;
 }
 
 int	main(int ac, char **av)
 {
 	t_data	*data;
-	int		i;
 
-	data = (t_data *)malloc(sizeof(t_data));
+	data = (t_data *)calloc(1, sizeof(t_data));
 	if (ac != 2)
 	{
 		perror("Error");
@@ -72,13 +72,5 @@ int	main(int ac, char **av)
 		validate_map(data);
 		mlx(data);
 	}
-	free_mlx(data);
-	i = 0;
-	while (data->map[i])
-	{
-		free(data->map[i]);
-		i++;
-	}
-	free(data->map);
 	return (0);
 }

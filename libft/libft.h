@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 12:25:30 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/24 14:39:05 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/25 14:04:01 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ char	*ft_allocate_join(char *fl, char *bf);
 int		ft_reset_buffer(char *buffer);
 char	*ft_freeline(char *fl);
 int		ft_printf(const char *format, ...);
+void	*ft_calloc(size_t nelem, size_t elsize);
+void	ft_bzero(void *s, size_t n);
 
 #endif

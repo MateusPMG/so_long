@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:26:06 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/24 16:44:51 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/25 14:54:21 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ void	move_down(t_data *data)
 
 int	key_handler(t_data *data, int keycode)
 {
-	if (keycode == 32)
+	if (keycode == 65307)
 	{
 		write(1, "ok\n", 3);
-		close_window(&data);
+		close_window(data);
 		exit(1);
 	}
 	if (keycode == 1)

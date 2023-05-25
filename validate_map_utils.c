@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:29:29 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/18 13:13:01 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/25 14:29:53 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ int	get_height(char **map)
 	return (i);
 }
 
-void	error_free(t_data **data)
+void	error_free(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while ((*data)->map[i] != NULL)
+	while ((data)->map[i] != NULL)
 	{
-		free((*data)->map[i]);
+		free((data)->map[i]);
 		i++;
 	}
-	free((*data)->map);
+	free((data)->map);
 	write(1, "Error\nWrong Format\n", 19);
 	exit(1);
 }
@@ -60,24 +60,24 @@ void	check_path(char **map, t_vars size)
 	check_path(map, (t_vars){size.x_start, size.y_start - 1, size.x, size.y});
 }
 
-void	check_path_values(t_data **data)
+void	check_path_values(t_data *data)
 {
 	t_vars		size;
 	int			x;
 	int			y;
 
-	size.y = get_height((*data)->map) - 1;
+	size.y = get_height((data)->map) - 1;
 	size.x = 0;
-	while ((*data)->map[size.y][size.x] != '\0')
+	while ((data)->map[size.y][size.x] != '\0')
 		size.x++;
 	size.x--;
 	y = size.y;
 	while (y--)
 	{
 		x = 0;
-		while ((*data)->map[y][x] != '\0')
+		while ((data)->map[y][x] != '\0')
 		{
-			if ((*data)->map[y][x] == 'P')
+			if ((data)->map[y][x] == 'P')
 			{
 				size.x_start = x;
 				size.y_start = y;
@@ -85,10 +85,10 @@ void	check_path_values(t_data **data)
 			x++;
 		}
 	}
-	check_path((*data)->map, size);
+	check_path((data)->map, size);
 }
 
-void	check_c(t_data **d)
+void	check_c(t_data *d)
 {
 	int	c;
 	int	x;
@@ -96,15 +96,15 @@ void	check_c(t_data **d)
 
 	c = 0;
 	y = 0;
-	while ((*d)->map[y] != NULL)
+	while ((d)->map[y] != NULL)
 	{
 		x = 0;
-		while ((*d)->map[y][x] != '\0')
+		while ((d)->map[y][x] != '\0')
 		{
-			if ((*d)->map[y][x] == 'c')
+			if ((d)->map[y][x] == 'c')
 			{
 				c++;
-				(*d)->map[y][x] = 'C';
+				(d)->map[y][x] = 'C';
 			}
 			x++;
 		}

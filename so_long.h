@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:43:19 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/24 16:11:15 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/25 14:30:21 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,22 +73,22 @@ typedef struct data
 int		validate_file(char *av);
 int		get_height(char **map);
 void	error_message(void);
-void	error_free(t_data **data);
-void	check_path_values(t_data **data);
+void	error_free(t_data *data);
+void	check_path_values(t_data *data);
 char	**get_map(char *av);
 void	validate_map(t_data *data);
-void	check_c(t_data **d);
-void	check_e(t_data **d);
-void	check_o(t_data **d);
-void	check_rectangular(t_data **data);
+void	check_c(t_data *d);
+void	check_e(t_data *d);
+void	check_o(t_data *d);
+void	check_rectangular(t_data *data);
 void	free_mlx(t_data *data);
 void	get_image(t_data *data);
 int		key_handler(t_data *data, int keycode);
 void	add_image(t_data *data);
-void	check_p(t_data **d);
+void	check_p(t_data *d);
 void	c_count(t_data *d);
 int		end_game(t_data *data, int y, int x);
 void	image_selection(t_data *data, int height, int width);
-int		close_window(t_data **data);
+int		close_window(t_data *data);
 
 #endif
