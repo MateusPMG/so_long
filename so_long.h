@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:43:19 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/25 14:30:21 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/25 15:58:08 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ void	check_o(t_data *d);
 void	check_rectangular(t_data *data);
 void	free_mlx(t_data *data);
 void	get_image(t_data *data);
-int		key_handler(t_data *data, int keycode);
+int		key_handler(int keycode, t_data *data);
 void	add_image(t_data *data);
 void	check_p(t_data *d);
 void	c_count(t_data *d);
 int		end_game(t_data *data, int y, int x);
 void	image_selection(t_data *data, int height, int width);
-int		close_window(t_data *data);
+int		close_handler(t_data *data);
 
 #endif

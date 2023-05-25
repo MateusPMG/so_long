@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:04:49 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/25 14:27:38 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/25 16:05:46 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	check_elements(t_data *data)
 {
 	t_map	*map;
 
-	map = (t_map *)calloc(1, sizeof(t_map));
+	map = (t_map *)ft_calloc(1, sizeof(t_map));
 	map->y = get_height((data)->map) - 1;
 	while (map->y--)
 	{
@@ -90,6 +90,7 @@ void	check_elements(t_data *data)
 	}
 	if (map->c == 0 || map->e != 1 || map->p != 1)
 		error_free(data);
+	free(map);
 }
 
 void	check_path_elements(t_data *d)

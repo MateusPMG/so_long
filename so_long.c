@@ -6,15 +6,35 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:43:04 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/25 14:46:32 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/25 16:03:41 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	close_window(t_data *data)
+int	close_handler(t_data *data)
 {
+	int	i;
+
+	mlx_destroy_image(data->mlx_ptr, data->sprite->wall);
+	mlx_destroy_image(data->mlx_ptr, data->sprite->collectible);
+	mlx_destroy_image(data->mlx_ptr, data->sprite->player);
+	mlx_destroy_image(data->mlx_ptr, data->sprite->path);
+	mlx_destroy_image(data->mlx_ptr, data->sprite->exit);
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_window((data)->mlx_ptr, (data)->win_ptr);
+	mlx_destroy_display(data->mlx_ptr);
+	free(data->sprite);
+	i = 0;
+	while (data->map[i])
+	{
+		free(data->map[i]);
+		i++;
+	}
+	free(data->map);
+	free(data->mlx_ptr);
+	free(data);
+	exit(0);
 	return (0);
 }
 
@@ -48,7 +68,7 @@ void	mlx(t_data *data)
 	c_count(data);
 	get_image(data);
 	add_image(data);
-	mlx_hook(data->win_ptr, 17, 1L << 17, close_window, data);
+	mlx_hook(data->win_ptr, 17, 1L << 17, close_handler, data);
 	mlx_hook(data->win_ptr, 2, 1L << 0, key_handler, data);
 	mlx_loop(data->mlx_ptr);
 	return ;

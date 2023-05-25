@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:26:06 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/25 14:54:21 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/25 16:13:16 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,62 @@ void	move_down(t_data *data)
 	}
 }
 
-int	key_handler(t_data *data, int keycode)
+void	move_left(t_data *data)
+{
+	int	y;
+	int	x;
+
+	y = data->size.y_start;
+	x = data->size.x_start;
+	if ((x - 1 > 0) && (data->map[y][x - 1] != '1'))
+	{
+		if (!(end_game(data, y, x - 1)))
+			return ;
+		data->size.x_start--;
+		data->map[y][x - 1] = 'P';
+		data->map[y][x] = '0';
+		image_selection(data, y, x);
+		image_selection(data, y, x - 1);
+		data->moves++;
+		ft_printf("Total of moves:%d\n", data->moves);
+	}
+}
+
+void	move_right(t_data *data)
+{
+	int	y;
+	int	x;
+
+	y = data->size.y_start;
+	x = data->size.x_start;
+	if ((x + 1 < data->size.x) && (data->map[y][x + 1] != '1'))
+	{
+		if (!(end_game(data, y, x + 1)))
+			return ;
+		data->size.x_start++;
+		data->map[y][x + 1] = 'P';
+		data->map[y][x] = '0';
+		image_selection(data, y, x);
+		image_selection(data, y, x + 1);
+		data->moves++;
+		ft_printf("Total of moves:%d\n", data->moves);
+	}
+}
+
+int	key_handler(int keycode, t_data *data)
 {
 	if (keycode == 65307)
 	{
-		write(1, "ok\n", 3);
-		close_window(data);
-		exit(1);
+		close_handler(data);
+		exit(0);
 	}
-	if (keycode == 1)
+	else if (keycode == 119)
 		move_up(data);
-	if (keycode == 13)
+	else if (keycode == 115)
 		move_down(data);
-	//if (keycode == XK_Left || keycode == XK_a)
-		//move_left(data);
-	//if (keycode == XK_Right || keycode == XK_d)
-		//move_right(data);
+	if (keycode == XK_Left || keycode == XK_a)
+		move_left(data);
+	if (keycode == XK_Right || keycode == XK_d)
+		move_right(data);
 	return (1);
 }
