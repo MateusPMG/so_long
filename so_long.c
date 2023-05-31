@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:43:04 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/25 16:03:41 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/30 13:46:54 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	close_handler(t_data *data)
 	mlx_destroy_image(data->mlx_ptr, data->sprite->collectible);
 	mlx_destroy_image(data->mlx_ptr, data->sprite->player);
 	mlx_destroy_image(data->mlx_ptr, data->sprite->path);
+	mlx_destroy_image(data->mlx_ptr, data->sprite->overlap);
 	mlx_destroy_image(data->mlx_ptr, data->sprite->exit);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_window((data)->mlx_ptr, (data)->win_ptr);
@@ -81,11 +82,14 @@ int	main(int ac, char **av)
 	data = (t_data *)calloc(1, sizeof(t_data));
 	if (ac != 2)
 	{
-		perror("Error");
+		perror("Error\n");
 		exit(1);
 	}
 	if (!validate_file(av[1]))
+	{
+		free(data);
 		return (0);
+	}
 	data->map = get_map(av[1]);
 	if (data->map != NULL)
 	{

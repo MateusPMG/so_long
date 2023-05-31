@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:04:49 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/25 16:05:46 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/30 13:30:28 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	check_rectangular(t_data *data)
 		}
 		if (x != size)
 		{
-			error_free(data);
+			error_free(data, 0);
 		}
 		y--;
 	}
@@ -46,20 +46,20 @@ void	check_walls(t_data *data)
 	while ((data)->map[y] != NULL)
 	{
 		if ((data)->map[y][0] != '1')
-			error_free(data);
+			error_free(data, 1);
 		y++;
 	}
 	x = 0;
 	while ((data)->map[0][x] != '\0' && (data)->map[y - 1][x] != '\0')
 	{
 		if ((data)->map[0][x] != '1' || (data)->map[y - 1][x] != '1')
-			error_free(data);
+			error_free(data, 1);
 		x++;
 	}
 	while ((data)->map[y - 2] != (data)->map[0])
 	{
 		if ((data)->map[y - 2][x - 1] != '1')
-			error_free(data);
+			error_free(data, 1);
 		y--;
 	}
 }
@@ -84,12 +84,12 @@ void	check_elements(t_data *data)
 				map->e++;
 			else if ((data)->map[map->y][map->x] != '1'
 				&& (data)->map[map->y][map->x] != '0')
-				error_free(data);
+				error_free(data, 2);
 			map->x++;
 		}
 	}
 	if (map->c == 0 || map->e != 1 || map->p != 1)
-		error_free(data);
+		error_free(data, 3);
 	free(map);
 }
 

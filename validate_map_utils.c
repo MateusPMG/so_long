@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:29:29 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/25 16:23:24 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/30 13:48:08 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_height(char **map)
 	return (i);
 }
 
-void	error_free(t_data *data)
+void	error_free(t_data *data, int j)
 {
 	int	i;
 
@@ -33,7 +33,14 @@ void	error_free(t_data *data)
 		i++;
 	}
 	free((data)->map);
-	write(1, "Error\nWrong Format\n", 19);
+	if (j == 0)
+		write(1, "Error\nNot Rectangular\n", 22);
+	else if (j == 1)
+		write(1, "Error\nNot Enclosed\n", 19);
+	else if (j == 2)
+		write(1, "Error\nWrong element\n", 20);
+	else if (j == 3)
+		write(1, "Error\nWrong amount of a given element\n", 38);
 	exit(1);
 }
 
@@ -116,7 +123,7 @@ void	check_c(t_data *d)
 	}
 	if (c == 0)
 	{
-		write(1, "No path to collectible", 22);
+		write(1, "Error\nNo path to collectible\n", 29);
 		exit(1);
 	}
 }

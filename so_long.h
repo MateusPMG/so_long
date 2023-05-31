@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 12:43:19 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/25 15:58:08 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/30 13:31:33 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct sprite
 	void		*player;
 	void		*path;
 	void		*exit;
+	void		*overlap;
 }				t_sprite;
 
 typedef struct map
@@ -73,7 +74,7 @@ typedef struct data
 int		validate_file(char *av);
 int		get_height(char **map);
 void	error_message(void);
-void	error_free(t_data *data);
+void	error_free(t_data *data, int j);
 void	check_path_values(t_data *data);
 char	**get_map(char *av);
 void	validate_map(t_data *data);
@@ -90,5 +91,6 @@ void	c_count(t_data *d);
 int		end_game(t_data *data, int y, int x);
 void	image_selection(t_data *data, int height, int width);
 int		close_handler(t_data *data);
+void	k_or_p(t_data *data, t_vars cords);
 
 #endif

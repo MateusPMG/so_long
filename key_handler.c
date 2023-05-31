@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:26:06 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/25 16:13:16 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/30 13:17:07 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,16 @@ void	move_up(t_data *data)
 	x = data->size.x_start;
 	if ((y - 1 > 0) && (data->map[y - 1][x] != '1'))
 	{
-		if (!(end_game(data, y - 1, x)))
-			return ;
+		end_game(data, y - 1, x);
+		if (data->map[y - 1][x] == 'E' && data->c)
+		{
+			data->map[y - 1][x] = 'K';
+			data->map[y][x] = '0';
+		}
+		else
+			k_or_p(data, (t_vars){data->size.x_start,
+				data->size.y_start, 0, -1});
 		data->size.y_start--;
-		data->map[y - 1][x] = 'P';
-		data->map[y][x] = '0';
 		image_selection(data, y, x);
 		image_selection(data, y - 1, x);
 		data->moves++;
@@ -42,11 +47,16 @@ void	move_down(t_data *data)
 	x = data->size.x_start;
 	if ((y + 1 < data->size.y) && (data->map[y + 1][x] != '1'))
 	{
-		if (!(end_game(data, y + 1, x)))
-			return ;
+		end_game(data, y + 1, x);
+		if (data->map[y + 1][x] == 'E' && data->c)
+		{
+			data->map[y + 1][x] = 'K';
+			data->map[y][x] = '0';
+		}
+		else
+			k_or_p(data, (t_vars){data->size.x_start,
+				data->size.y_start, 0, 1});
 		data->size.y_start++;
-		data->map[y + 1][x] = 'P';
-		data->map[y][x] = '0';
 		image_selection(data, y, x);
 		image_selection(data, y + 1, x);
 		data->moves++;
@@ -63,11 +73,16 @@ void	move_left(t_data *data)
 	x = data->size.x_start;
 	if ((x - 1 > 0) && (data->map[y][x - 1] != '1'))
 	{
-		if (!(end_game(data, y, x - 1)))
-			return ;
+		end_game(data, y, x - 1);
+		if (data->map[y][x - 1] == 'E' && data->c)
+		{
+			data->map[y][x - 1] = 'K';
+			data->map[y][x] = '0';
+		}
+		else
+			k_or_p(data, (t_vars){data->size.x_start,
+				data->size.y_start, -1, 0});
 		data->size.x_start--;
-		data->map[y][x - 1] = 'P';
-		data->map[y][x] = '0';
 		image_selection(data, y, x);
 		image_selection(data, y, x - 1);
 		data->moves++;
@@ -84,11 +99,16 @@ void	move_right(t_data *data)
 	x = data->size.x_start;
 	if ((x + 1 < data->size.x) && (data->map[y][x + 1] != '1'))
 	{
-		if (!(end_game(data, y, x + 1)))
-			return ;
+		end_game(data, y, x + 1);
+		if (data->map[y][x + 1] == 'E' && data->c)
+		{
+			data->map[y][x + 1] = 'K';
+			data->map[y][x] = '0';
+		}
+		else
+			k_or_p(data, (t_vars){data->size.x_start,
+				data->size.y_start, 1, 0});
 		data->size.x_start++;
-		data->map[y][x + 1] = 'P';
-		data->map[y][x] = '0';
 		image_selection(data, y, x);
 		image_selection(data, y, x + 1);
 		data->moves++;

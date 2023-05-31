@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 12:07:28 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/25 14:31:19 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/30 13:37:29 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	check_e(t_data *d)
 	}
 	if (e == 0)
 	{
-		write(1, "No path to exit\n", 16);
+		write(1, "Error\nNo path to exit\n", 22);
 		exit(1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mpatrao <mpatrao@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 13:23:58 by mpatrao           #+#    #+#             */
-/*   Updated: 2023/05/24 15:41:15 by mpatrao          ###   ########.fr       */
+/*   Updated: 2023/05/30 12:05:58 by mpatrao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	get_image(t_data *data)
 			"./textures/collectible.xpm", &h, &h);
 	data->sprite->path = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./textures/path.xpm", &h, &h);
+	data->sprite->overlap = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/overlap.xpm", &h, &h);
 }
 
 void	image_selection(t_data *data, int height, int width)
@@ -46,6 +48,9 @@ void	image_selection(t_data *data, int height, int width)
 	else if (data->map[height][width] == '0')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 			data->sprite->path, width * 50, height * 50);
+	else if (data->map[height][width] == 'K')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->sprite->overlap, width * 50, height * 50);
 }
 
 void	add_image(t_data *data)
